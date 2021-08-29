@@ -23,10 +23,11 @@ abstract class BaseAbstractDto
                 'Error: ' . $validator->errors()->first()
             );
         }
-
+        // @codeCoverageIgnoreStart
         if (!$this->map($data)) {
             throw new InvalidArgumentException('Mapping field failed.');
         }
+        // @codeCoverageIgnoreEnd
     }
 
     abstract protected function configureValidatorRules(): array;

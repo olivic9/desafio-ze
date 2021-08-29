@@ -50,6 +50,11 @@ All endpoints are under http://localhost:8888 check <a href="http://localhost:87
 ```sh
 docker exec -it ze_php php artisan test
 ```
+## Test Coverage Report
+
+```sh
+docker exec -it ze_php vendor/bin/phpunit --coverage-html reports/
+```
 
 ## Author
 

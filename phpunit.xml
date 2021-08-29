@@ -13,6 +13,12 @@
         </testsuite>
     </testsuites>
     <coverage processUncoveredFiles="true">
+        <exclude>
+            <directory suffix=".php">./app/Http/Middleware</directory>
+            <directory suffix=".php">./app/Exceptions</directory>
+            <directory suffix=".php">./app/Console</directory>
+            <directory suffix=".php">./app/Providers</directory>
+        </exclude>
         <include>
             <directory suffix=".php">./app</directory>
         </include>
@@ -28,4 +34,5 @@
         <server name="SESSION_DRIVER" value="array"/>
         <server name="TELESCOPE_ENABLED" value="false"/>
     </php>
+
 </phpunit>
