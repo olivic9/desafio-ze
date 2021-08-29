@@ -2,11 +2,12 @@
 
 namespace App\Providers;
 
+use App\Repositories\BaseRepository;
+use App\Repositories\Contracts\BaseInterface;
 use App\Repositories\Contracts\PartnerInterface;
 use App\Repositories\PartnerRepository;
 use Illuminate\Support\ServiceProvider;
-use App\Repositories\Contracts\BaseInterface;
-use App\Repositories\BaseRepository;
+
 /**
  * Class RepositoryServiceProvider
  * @package App\Providers

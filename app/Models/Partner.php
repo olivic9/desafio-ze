@@ -2,7 +2,6 @@
 
 namespace App\Models;
 
-use Illuminate\Database\Eloquent\Factories\HasFactory;
 use Illuminate\Database\Eloquent\Model;
 use MStaack\LaravelPostgis\Eloquent\PostgisTrait;
 
@@ -15,14 +14,13 @@ use MStaack\LaravelPostgis\Eloquent\PostgisTrait;
  *     )
  * )
  */
-
 class Partner extends Model
 {
     use PostgisTrait;
 
     protected $hidden = ['created_at', 'updated_at'];
 
-    protected $fillable = ['tradingName','ownerName','document','coverageArea','address'];
+    protected $fillable = ['tradingName', 'ownerName', 'document', 'coverageArea', 'address'];
 
     protected $postgisFields = [
         'coverageArea',

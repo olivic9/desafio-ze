@@ -4,14 +4,11 @@ namespace Tests\Unit;
 
 use App\Models\Partner;
 use App\Repositories\Contracts\PartnerInterface;
-use App\Repositories\PartnerRepository;
 use App\Services\Dtos\PartnerDto;
 use App\Services\PartnerService;
 use App\Traits\Util;
 use Exception;
-use Illuminate\Database\Eloquent\Model;
 use Illuminate\Support\Facades\App;
-use Mockery;
 use Tests\TestCase;
 
 

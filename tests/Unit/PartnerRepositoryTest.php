@@ -8,8 +8,8 @@ use App\Repositories\PartnerRepository;
 use App\Traits\Util;
 use Illuminate\Database\Eloquent\Model;
 use Illuminate\Support\Facades\App;
-use Tests\TestCase;
 use Mockery;
+use Tests\TestCase;
 
 
 class PartnerRepositoryTest extends TestCase
@@ -32,7 +32,6 @@ class PartnerRepositoryTest extends TestCase
         $mockedRepository->shouldReceive('create')->with($serviceData)->andReturn($partnerMock);
         $result = $mockedRepository->create($serviceData);
         $this->assertIsObject($result);
-
     }
 
     public function test_find_nearest_partner_method()
@@ -56,8 +55,6 @@ class PartnerRepositoryTest extends TestCase
         $this->mockedRepository->shouldReceive('get')->with($id)->andReturn((array)$partnerMock);
         $result = $this->mockedRepository->get($id);
         $this->assertIsArray($result);
-
-
     }
 
     public function test_find_nearest_partner()
@@ -76,6 +73,16 @@ class PartnerRepositoryTest extends TestCase
         $id = 3;
         $partnerInterface = App::make(PartnerInterface::class);
         $partnerData = $partnerInterface->get($id);
+        $this->assertDatabaseHas('partners', [
+            'id' => $partnerData['id']
+        ]);
+    }
+
+    public function test_find()
+    {
+        $id = 3;
+        $partnerInterface = App::make(PartnerInterface::class);
+        $partnerData = $partnerInterface->find($id);
         $this->assertDatabaseHas('partners', [
             'id' => $partnerData['id']
         ]);

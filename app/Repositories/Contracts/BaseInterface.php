@@ -2,7 +2,6 @@
 
 namespace App\Repositories\Contracts;
 
-use Illuminate\Support\Collection;
 use Illuminate\Database\Eloquent\Model;
 
 /**

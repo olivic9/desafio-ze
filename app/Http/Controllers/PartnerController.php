@@ -3,7 +3,6 @@
 namespace App\Http\Controllers;
 
 use App\Http\Controllers\BaseController as BaseController;
-use App\Models\Partner;
 use App\Repositories\Contracts\PartnerInterface;
 use App\Services\Dtos\PartnerDto;
 use App\Services\PartnerService;
@@ -11,14 +10,10 @@ use Exception;
 use Illuminate\Database\Eloquent\ModelNotFoundException;
 use Illuminate\Http\JsonResponse;
 use Illuminate\Http\Request;
-use Illuminate\Validation\ValidationException;
-use OpenApi\Annotations as OA;
-use Illuminate\Support\Facades\DB;
 use Illuminate\Support\Facades\Log;
-use InvalidArgumentException;
 use Illuminate\Support\Facades\Validator;
-
-use function Couchbase\defaultDecoder;
+use Illuminate\Validation\ValidationException;
+use InvalidArgumentException;
 
 
 class PartnerController extends BaseController

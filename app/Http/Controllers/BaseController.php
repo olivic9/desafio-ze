@@ -1,9 +1,10 @@
 <?php
 
 namespace App\Http\Controllers;
+
 use Illuminate\Http\JsonResponse;
 use Illuminate\Http\Request;
-use OpenApi\Annotations as OA;
+
 /**
  * @SWG\Swagger(host=API_HOST)
  */
@@ -20,13 +21,13 @@ use OpenApi\Annotations as OA;
 /**
  * @OA\Server(url="http://127.0.0.1:8888/api")
  */
+
 /**
  * @OA\Tag(
  *     name="Partners",
  *     description="Create, Find and Search Zé Delivery partners endpoints",
  * )
  */
-
 class BaseController extends Controller
 {
 
@@ -49,9 +50,7 @@ class BaseController extends Controller
 
     public function decodeRequest(Request $request): array
     {
-
         return json_decode($request->getContent(), true) ?? [];
-
     }
 
     /**
@@ -62,13 +61,11 @@ class BaseController extends Controller
 
     public function formatResponse(bool $success, array $data, string $message): array
     {
-
         return [
             'success' => $success,
             'data' => $data,
             'message' => $message,
         ];
-
     }
 
 }

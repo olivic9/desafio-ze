@@ -157,7 +157,7 @@ trait Util
           }
        }';
 
-        return  json_decode($serviceData, true);
+        return json_decode($serviceData, true);
     }
 
 }

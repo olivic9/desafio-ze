@@ -2,17 +2,11 @@
 
 namespace App\Services;
 
-use App\Models\Partner;
 use App\Repositories\Contracts\PartnerInterface;
 use App\Services\Dtos\BaseAbstractDto;
 use App\Services\Dtos\PartnerDto;
-use Illuminate\Database\Eloquent\ModelNotFoundException;
-use Illuminate\Support\Facades\Log;
-use InvalidArgumentException;
 use Exception;
-use MStaack\LaravelPostgis\Geometries\LineString;
-use MStaack\LaravelPostgis\Geometries\MultiPolygon;
-use MStaack\LaravelPostgis\Geometries\Point;
+use InvalidArgumentException;
 
 /**
  * Class PartnerService

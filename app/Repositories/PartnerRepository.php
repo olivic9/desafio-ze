@@ -2,11 +2,8 @@
 
 namespace App\Repositories;
 
-use App\Repositories\Contracts\PartnerInterface;
 use App\Models\Partner;
-use App\Repositories\BaseRepository;
-use Illuminate\Database\Eloquent\Builder;
-use Illuminate\Support\Carbon;
+use App\Repositories\Contracts\PartnerInterface;
 use Illuminate\Support\Facades\Cache;
 
 class PartnerRepository extends BaseRepository implements PartnerInterface
@@ -42,7 +39,9 @@ class PartnerRepository extends BaseRepository implements PartnerInterface
             300,
             function () use ($queryBuilderBindings) {
                 return $this->model::whereRaw(
-                    'st_covers("coverageArea", ST_SetSRID(ST_MakePoint(:long,:lat)::geography, 4326)) is true', $queryBuilderBindings)
+                    'st_covers("coverageArea", ST_SetSRID(ST_MakePoint(:long,:lat)::geography, 4326)) is true',
+                    $queryBuilderBindings
+                )
                     ->orderByRaw('address <->ST_SetSRID(ST_MakePoint(:long,:lat), 4326)::geography')
                     ->first();
             }

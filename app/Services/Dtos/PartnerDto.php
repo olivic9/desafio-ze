@@ -2,11 +2,11 @@
 
 namespace App\Services\Dtos;
 
-use GeoJson\Geometry\Point;
 use GeoJson\Geometry\MultiPolygon;
+use GeoJson\Geometry\Point;
 use Illuminate\Support\Facades\DB;
-use YucaDoo\LaravelGeoJsonRule\GeoJsonRule;
 use MStaack\LaravelPostgis\Geometries\Point as MSPoint;
+use YucaDoo\LaravelGeoJsonRule\GeoJsonRule;
 
 class PartnerDto extends BaseAbstractDto
 {
@@ -16,6 +16,21 @@ class PartnerDto extends BaseAbstractDto
     private $coverageArea;
     private $address;
 
+    /**
+     * @return array
+     */
+    public function mapToCreate(): array
+    {
+        $multiPolygon = json_encode($this->coverageArea);
+
+        return [
+            'tradingName' => $this->tradingName,
+            'ownerName' => $this->ownerName,
+            'document' => $this->document,
+            'coverageArea' => DB::raw("public.ST_GeomFromGeoJson('$multiPolygon')"),
+            'address' => new MSPOINT($this->address['coordinates'][0], $this->address['coordinates'][1])
+        ];
+    }
 
     protected function configureValidatorRules(): array
     {
@@ -37,22 +52,6 @@ class PartnerDto extends BaseAbstractDto
         $this->address = $data['address'];
 
         return true;
-    }
-
-    /**
-     * @return array
-     */
-    public function mapToCreate(): array
-    {
-        $multiPolygon = json_encode($this->coverageArea);
-
-        return [
-            'tradingName' => $this->tradingName,
-            'ownerName' => $this->ownerName,
-            'document' => $this->document,
-            'coverageArea' => DB::raw("public.ST_GeomFromGeoJson('$multiPolygon')"),
-            'address' => new MSPOINT($this->address['coordinates'][0], $this->address['coordinates'][1])
-        ];
     }
 
 }
