@@ -18,3 +18,4 @@ yarn-error.log
 /docker/php-fpm/logs/php-errors.log
 /docker/swagger/logs/access.log
 /docker/swagger/logs/error.log
+/reports/*

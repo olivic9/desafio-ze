@@ -55,7 +55,7 @@ docker exec -it ze_php php artisan test
 ```sh
 docker exec -it ze_php vendor/bin/phpunit --coverage-html reports/
 ```
-
+The test coverage reports are available under reports folder, you can open it in your favorite browser
 ## Author
 
 👤 **Clayson Oliveira**
