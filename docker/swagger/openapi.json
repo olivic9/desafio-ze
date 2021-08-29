@@ -1,0 +1,352 @@
+{
+    "openapi": "3.0.0",
+    "info": {
+        "title": "Zé Delivery Partners API",
+        "description": "Zé Delivery Partners API Code Challange",
+        "contact": {
+            "email": "clayson.capo@gmail.com"
+        },
+        "version": "0.0.0."
+    },
+    "servers": [
+        {
+            "url": "http://127.0.0.1:8888/api"
+        }
+    ],
+    "paths": {
+        "/partners": {
+            "post": {
+                "tags": [
+                    "Partners"
+                ],
+                "summary": "Creates a new Zé Delivery Partner",
+                "description": "Creates a Zé Delivery partner and return a json response",
+                "operationId": "createPartner",
+                "requestBody": {
+                    "description": "Create partner payload data",
+                    "required": true,
+                    "content": {
+                        "application/json": {
+                            "schema": {
+                                "properties": {
+                                    "tradingName": {
+                                        "description": "Partner Trading Name",
+                                        "type": "string",
+                                        "format": "string",
+                                        "example": "Deposito do Zé"
+                                    },
+                                    "ownerName": {
+                                        "description": "Partner Owner Name",
+                                        "type": "string",
+                                        "format": "string",
+                                        "example": "Zé Oliveira"
+                                    },
+                                    "document": {
+                                        "description": "Partner Document",
+                                        "type": "string",
+                                        "example": "A112x0001"
+                                    },
+                                    "coverageArea": {
+                                        "description": "Partner coverage area GeoJson object, type MultiPolygon",
+                                        "type": "json",
+                                        "example": "{}"
+                                    },
+                                    "address": {
+                                        "description": "Partner address GeoJson object, type point",
+                                        "type": "json",
+                                        "example": "{}"
+                                    }
+                                },
+                                "type": "object"
+                            }
+                        }
+                    }
+                },
+                "responses": {
+                    "200": {
+                        "description": "ok",
+                        "content": {
+                            "application/json": {
+                                "schema": {
+                                    "properties": {
+                                        "success": {
+                                            "description": "The request was successfull?",
+                                            "type": "boolean"
+                                        },
+                                        "message": {
+                                            "description": "The response message",
+                                            "type": "string"
+                                        },
+                                        "data": {
+                                            "description": "The response data",
+                                            "type": "array",
+                                            "items": {}
+                                        }
+                                    },
+                                    "type": "object",
+                                    "example": {
+                                        "success": true,
+                                        "message": "ok",
+                                        "data": {
+                                            "id": 0,
+                                            "tradingName": "B0r do Ze",
+                                            "ownerName": "J0a Silva",
+                                            "document": "00000",
+                                            "coverageArea": [],
+                                            "address": []
+                                        }
+                                    }
+                                }
+                            }
+                        }
+                    },
+                    "422": {
+                        "description": "Unprocessable Entity",
+                        "content": {
+                            "application/json": {
+                                "schema": {
+                                    "properties": {
+                                        "success": {
+                                            "description": "The request was successfull?",
+                                            "type": "boolean"
+                                        },
+                                        "message": {
+                                            "description": "The response message",
+                                            "type": "string"
+                                        },
+                                        "data": {
+                                            "description": "The response data",
+                                            "type": "array",
+                                            "items": {}
+                                        }
+                                    },
+                                    "type": "object",
+                                    "example": {
+                                        "success": false,
+                                        "message": "error message",
+                                        "data": []
+                                    }
+                                }
+                            }
+                        }
+                    },
+                    "400": {
+                        "description": "Bad Request"
+                    },
+                    "403": {
+                        "description": "Forbidden"
+                    }
+                }
+            }
+        },
+        "/partners/{id}": {
+            "get": {
+                "tags": [
+                    "Partners"
+                ],
+                "summary": "Get Zé Delivery Information",
+                "description": "Returns Zé Delivery partner data",
+                "operationId": "getPartnerById",
+                "parameters": [
+                    {
+                        "name": "id",
+                        "in": "path",
+                        "description": "Partner id",
+                        "required": true,
+                        "schema": {
+                            "type": "integer"
+                        }
+                    }
+                ],
+                "responses": {
+                    "200": {
+                        "description": "ok",
+                        "content": {
+                            "application/json": {
+                                "schema": {
+                                    "properties": {
+                                        "success": {
+                                            "description": "The request was successfull?",
+                                            "type": "boolean"
+                                        },
+                                        "message": {
+                                            "description": "The response message",
+                                            "type": "string"
+                                        },
+                                        "data": {
+                                            "description": "The response data",
+                                            "type": "array",
+                                            "items": {}
+                                        }
+                                    },
+                                    "type": "object",
+                                    "example": {
+                                        "success": true,
+                                        "message": "ok",
+                                        "data": {
+                                            "id": 0,
+                                            "tradingName": "B0r do Ze",
+                                            "ownerName": "J0a Silva",
+                                            "document": "00000",
+                                            "coverageArea": [],
+                                            "address": []
+                                        }
+                                    }
+                                }
+                            }
+                        }
+                    },
+                    "422": {
+                        "description": "Unprocessable Entity",
+                        "content": {
+                            "application/json": {
+                                "schema": {
+                                    "properties": {
+                                        "success": {
+                                            "description": "The request was successfull?",
+                                            "type": "boolean"
+                                        },
+                                        "message": {
+                                            "description": "The response message",
+                                            "type": "string"
+                                        },
+                                        "data": {
+                                            "description": "The response data",
+                                            "type": "array",
+                                            "items": {}
+                                        }
+                                    },
+                                    "type": "object",
+                                    "example": {
+                                        "success": false,
+                                        "message": "error message",
+                                        "data": []
+                                    }
+                                }
+                            }
+                        }
+                    },
+                    "403": {
+                        "description": "Forbidden"
+                    }
+                }
+            }
+        },
+        "/partners/find": {
+            "post": {
+                "tags": [
+                    "Partners"
+                ],
+                "summary": "Finds Nearest Zé Delivery Partner",
+                "description": "Finds nearest Zé Delivery partner based on given latitude and longitude",
+                "operationId": "findPartner",
+                "requestBody": {
+                    "description": "Payload data",
+                    "required": true,
+                    "content": {
+                        "application/json": {
+                            "schema": {
+                                "properties": {
+                                    "lat": {
+                                        "description": "Given latitude",
+                                        "type": "float",
+                                        "format": "float",
+                                        "example": "-3.7979"
+                                    },
+                                    "long": {
+                                        "description": "given longitude",
+                                        "type": "float",
+                                        "format": "strfloating",
+                                        "example": "-38.5428"
+                                    }
+                                },
+                                "type": "object"
+                            }
+                        }
+                    }
+                },
+                "responses": {
+                    "200": {
+                        "description": "ok",
+                        "content": {
+                            "application/json": {
+                                "schema": {
+                                    "properties": {
+                                        "success": {
+                                            "description": "The request was successfull?",
+                                            "type": "boolean"
+                                        },
+                                        "message": {
+                                            "description": "The response message",
+                                            "type": "string"
+                                        },
+                                        "data": {
+                                            "description": "The response data",
+                                            "type": "array",
+                                            "items": {}
+                                        }
+                                    },
+                                    "type": "object",
+                                    "example": {
+                                        "success": true,
+                                        "message": "ok",
+                                        "data": {
+                                            "id": 0,
+                                            "tradingName": "B0r do Ze",
+                                            "ownerName": "J0a Silva",
+                                            "document": "00000",
+                                            "coverageArea": [],
+                                            "address": []
+                                        }
+                                    }
+                                }
+                            }
+                        }
+                    },
+                    "422": {
+                        "description": "Unprocessable Entity",
+                        "content": {
+                            "application/json": {
+                                "schema": {
+                                    "properties": {
+                                        "success": {
+                                            "description": "The request was successfull?",
+                                            "type": "boolean"
+                                        },
+                                        "message": {
+                                            "description": "The response message",
+                                            "type": "string"
+                                        },
+                                        "data": {
+                                            "description": "The response data",
+                                            "type": "array",
+                                            "items": {}
+                                        }
+                                    },
+                                    "type": "object",
+                                    "example": {
+                                        "success": false,
+                                        "message": "error message",
+                                        "data": []
+                                    }
+                                }
+                            }
+                        }
+                    },
+                    "400": {
+                        "description": "Bad Request"
+                    },
+                    "403": {
+                        "description": "Forbidden"
+                    }
+                }
+            }
+        }
+    },
+    "tags": [
+        {
+            "name": "Partners",
+            "description": "Create, Find and Search Zé Delivery partners endpoints"
+        }
+    ]
+}

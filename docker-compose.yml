@@ -1,0 +1,66 @@
+version: "3"
+services:
+  redis:
+    image: redis
+    container_name: ze_redis
+    ports:
+      - "6379:6379"
+  php-fpm:
+    image: php:7.4-fpm
+    container_name: ze_php
+    build:
+      context: docker/php-fpm
+    volumes:
+      - ./:/usr/share/nginx/html:cached
+      - ./docker/php-fpm/php/php.ini:/usr/local/etc/php/php.ini
+      - ./docker/php-fpm/logs:/usr/local/var/log
+    working_dir: /usr/share/nginx/html
+    external_links:
+      - nginx:localhost
+    environment:
+      PHP_UPLOAD_MAX_FILESIZE: 1G
+      PHP_MAX_INPUT_VARS: 1G
+    depends_on:
+      - db
+      - redis
+  nginx:
+    image: nginx:latest
+    container_name: ze_nginx
+    ports:
+      - "8888:8888"
+    expose:
+      - 8888
+    volumes:
+      - ./:/usr/share/nginx/html
+      - ./docker/nginx/conf.d:/etc/nginx/conf.d
+      - ./docker/nginx/nginx.conf:/etc/nginx/nginx.conf
+      - ./docker/nginx/logs:/var/log/nginx
+    depends_on:
+      - php-fpm
+
+  db:
+    image: postgres:13.4
+    container_name: ze_postgres
+    build:
+      context: docker/postgres
+    ports:
+      - "5432:5432"
+    expose:
+      - 5432
+    restart: always
+    environment:
+      POSTGRES_PASSWORD: postgres
+
+  swagger-ui:
+    image: swaggerapi/swagger-ui
+    container_name: "ze_swagger"
+    ports:
+      - "8787:8080"
+    volumes:
+      - ./docker/swagger/logs:/var/log/nginx
+      - ./docker/swagger/conf.d:/etc/nginx/conf.d
+      - ./docker/swagger/openapi.json:/openapi.json
+    environment:
+      SWAGGER_JSON: /openapi.json
+
+
