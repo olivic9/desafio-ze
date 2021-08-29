@@ -31,12 +31,6 @@ class PartnerService implements ServiceInterface
 
     public static function make(BaseAbstractDto $dto): ServiceInterface
     {
-        if (!$dto instanceof PartnerDto) {
-            throw new InvalidArgumentException(
-                'PartnerService needs to receive a PartnerDto.'
-            );
-        }
-
         return new PartnerService($dto);
     }
 

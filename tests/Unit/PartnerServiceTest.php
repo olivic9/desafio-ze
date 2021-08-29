@@ -9,7 +9,9 @@ use App\Services\PartnerService;
 use App\Traits\Util;
 use Exception;
 use Illuminate\Support\Facades\App;
+use InvalidArgumentException;
 use Tests\TestCase;
+use TypeError;
 
 
 class PartnerServiceTest extends TestCase
@@ -51,4 +53,18 @@ class PartnerServiceTest extends TestCase
             'document' => $response['document'],
         ]);
     }
+
+    public function test_partner_service_create_valdation_error()
+    {
+        $serviceData = Util::testData();
+
+        $serviceData['address'] = 'error';
+
+        $this->expectException(InvalidArgumentException::class);
+
+        new PartnerDto($serviceData);
+    }
+
+
+
 }
