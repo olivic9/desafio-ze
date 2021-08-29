@@ -73,7 +73,7 @@ class PartnerRepositoryTest extends TestCase
 
     public function test_get()
     {
-        $id = 1;
+        $id = 3;
         $partnerInterface = App::make(PartnerInterface::class);
         $partnerData = $partnerInterface->get($id);
         $this->assertDatabaseHas('partners', [
