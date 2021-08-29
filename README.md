@@ -13,7 +13,7 @@
 <li><a href="https://docs.docker.com/compose/">Docker Compose</a></li>
 
 ## Local Setup
-Clone this repo and shell to its path and run docker compose. Make sure to have 5432, 6379, 8787 and 8888 available locally 
+Clone this repo and shell to its path and run docker compose. Make that 5432, 6379, 8787 and 8888 ports are available locally 
 
 ```sh
 git clone https://github.com/olivic9/desafio-ze.git
