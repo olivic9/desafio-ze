@@ -50,12 +50,12 @@ All endpoints are under http://localhost:8888 check <a href="http://localhost:87
 ```sh
 docker exec -it ze_php php artisan test
 ```
-## Test Coverage Report
+## Generate Coverage Report
 
 ```sh
 docker exec -it ze_php vendor/bin/phpunit --coverage-html reports/
 ```
-The test coverage reports are available under reports folder, you can open it in your favorite browser
+<a href="reports/index.html">Report</a>
 ## Author
 
 👤 **Clayson Oliveira**
