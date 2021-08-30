@@ -55,7 +55,7 @@ docker exec -it ze_php php artisan test
 ```sh
 docker exec -it ze_php vendor/bin/phpunit --coverage-html reports/
 ```
-<a href="reports/index.html">Report</a>
+<a href="./reports/index.html">Report</a>
 ## Author
 
 👤 **Clayson Oliveira**
